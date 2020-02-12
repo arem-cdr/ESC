@@ -16,6 +16,10 @@ ESC::~ESC()
 
 void ESC::Set_Speed_G(int s, int d) //0 et 350
 {
+    if (s >= 350)
+        s = 350;
+    if (s <= 0)
+        s = 0;
     int p = 2000;
     if (d == 0)
     {
@@ -29,6 +33,10 @@ void ESC::Set_Speed_G(int s, int d) //0 et 350
 }
 void ESC::Set_Speed_D(int s, int d)
 {
+    if (s >= 350)
+        s = 350;
+    if (s <= 0)
+        s = 0;
     int p = 2000;
     if (d == 0)
     {
@@ -38,7 +46,7 @@ void ESC::Set_Speed_D(int s, int d)
     {
         p = TON_MAX_HALF + s;
     }
-    speedG_pwm->pulsewidth_us(p);
+    speedD_pwm->pulsewidth_us(p);
 }
 
 void ESC::Stop_G()
@@ -48,5 +56,11 @@ void ESC::Stop_G()
 
 void ESC::Stop_D()
 {
+    speedD_pwm->pulsewidth_us(2000);
+}
+
+void ESC::Stop_All()
+{
+    speedG_pwm->pulsewidth_us(2000);
     speedD_pwm->pulsewidth_us(2000);
 }

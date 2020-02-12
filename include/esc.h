@@ -1,5 +1,8 @@
 #include <mbed.h>
 
+// TO DO
+// Rajouter un getSpeed sur la vitesse des moteurs
+
 #define TON_MIN 1060
 #define TON_MAX 1860
 #define TON_MIN_HALF 1410
@@ -13,6 +16,7 @@ public:
     void Set_Speed_D(int s, int d);
     void Stop_G();
     void Stop_D();
+    void Stop_All();
     ~ESC();
 
 private:
